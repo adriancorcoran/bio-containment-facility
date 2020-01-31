@@ -1,0 +1,41 @@
+EscherichiaColi:
+  - strain: O255
+
+EscherichiaColiVirulent:
+  - strain: O157
+
+VibrioCholerae:
+  - strain: V732
+
+VibrioCholeraeVirulent:
+  - strain: O139
+
+YersiniaPestis:
+  - strain: Y980
+
+YersiniaPestisResistancePlasmid:
+  - strain: P745
+
+StaphylococcusAureus:
+  - strain: S452
+
+StaphylococcusAureusMRSA:
+  - strain: S002
+
+StreptococcusPneumoniae:
+  - strain: T879
+
+ClostridiumBotulinum:
+  - strain: C804
+
+ClostridiumBotulinumVirulent:
+  - strain: TypeB
+
+Ebola:
+  - strain: VH76
+
+HIV:
+  - strain: HV32
+
+Smallpox:
+  - strain: SX54
