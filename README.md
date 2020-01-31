@@ -9,42 +9,67 @@ Warning! You have entered a secure and highly dangerous area. This facility hous
 
 ## Command Line Interface
 
-The entry point for the system is in the modelrailway folder - follow these instructions to test it out:
+To open the command interface:
 
-1. `cd` to `modelrailway`
-1. run `$ exe/modelrailwaycli help` to see a list of commands and hints for using them
+1. run `$ exe/biocontainmentfacility help` to see a list of commands and hints for using them
 1. when using the command you can leave out the arguments on those commands with arguments to see the exceptions at work :)
 
 ## Available Commands
 
-## `$ modelrailwaycli create_catalogue`
+## `$ biocontainmentfacility display_summary_all`
 
-Creates and displays the catalogue
+Displays summarized information on all organisms in the catalogue
 
-## `$ modelrailwaycli display_catalogue`
+## `$ biocontainmentfacility display_details_all`
 
-Displays the catalogue
+Displays detailed information on all organisms in the catalogue
 
-## `$ modelrailwaycli calculate_total_cost`
+## `$ biocontainmentfacility display_summary`
 
-Shows the total cost of the current catalogue
+Displays summarized information on the chosen organism.
 
-## `$ modelrailwaycli grab_type_quantity`
+Usage: `biocontainmentfacility display_summary number` (e.g. 3)
 
-Print the total quantity of this type of class in the catalogue.
-Usage: `modelrailwaycli grab_type_quantity classname` (e.g. 'SteamEngine')
+## `$ biocontainmentfacility display_detail`
 
-## `$ modelrailwaycli grab_type_costs`
+Displays detailed information on the chosen organism.
 
-Prints the cost of each different instance of this class in the catalogue.
-Usage: `modelrailwaycli grab_type_costs classname` (e.g. 'OilTruck')
+Usage: `biocontainmentfacility display_detail number` (e.g. 5)
 
-## `$ modelrailwaycli find_type`
+## `$ biocontainmentfacility display_bacteria`
 
-Prints out the instances of this type of class in the catalogue.
-Usage: `modelrailwaycli find_type classname` (e.g. 'Station')
+Displays summarized information on all bacteria in the catalogue
 
-## `$ modelrailwaycli grab_expensive_items`
+## `$ biocontainmentfacility display_viruses`
 
-Selects and prints all items from the catalogue which are >= to the amount you enter.
-Usage: `modelrailwaycli grab_expensive_items amount` (e.g. '50')
+Displays summarized information on all viruses in the catalogue
+
+## `$ biocontainmentfacility display_lethal_organisms`
+
+Displays all organisms with greater than or equal to the chosen lethality.
+
+Usage: `biocontainmentfacility display_lethal_organisms number` (e.g. 9)
+
+## `$ biocontainmentfacility display_cost_of_treatment`
+
+Displays the cost of treating all the organisms in the catalogue, for the given number of cases.
+
+Usage: `biocontainmentfacility display_cost_of_treatment number` (e.g. 500)
+
+## `$ biocontainmentfacility display_resistant_organisms`
+
+Displays summarized information on organisms which are resistant to the chosen treatment.
+
+Usage: `biocontainmentfacility display_resistant_organisms number` (e.g. 8)
+
+## `$ biocontainmentfacility display_susceptible_organisms`
+
+Displays summarized information on organisms which are susceptible to the chosen treatment.
+
+Usage: `biocontainmentfacility display_susceptible_organisms number` (e.g. 7)
+
+## `$ biocontainmentfacility diagnose_symptoms`
+
+Displays summarized information on organisms which may cause the chosen symptoms. You may choose 1 or more symptoms from the list ro narrow your search.
+
+Usage: `biocontainmentfacility diagnose_symptoms number [..number number]` (e.g. 19 2)
