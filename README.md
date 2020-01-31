@@ -16,59 +16,61 @@ To open the command interface:
 
 ## Available Commands
 
-## `$ biocontainmentfacility display_summary_all`
+## Available Commands
+
+#### `$ biocontainmentfacility display_summary_all`
 
 Displays summarized information on all organisms in the catalogue
 
-## `$ biocontainmentfacility display_details_all`
+#### `$ biocontainmentfacility display_details_all`
 
 Displays detailed information on all organisms in the catalogue
 
-## `$ biocontainmentfacility display_summary`
+#### `$ biocontainmentfacility display_summary`
 
 Displays summarized information on the chosen organism.
 
 Usage: `biocontainmentfacility display_summary number` (e.g. 3)
 
-## `$ biocontainmentfacility display_detail`
+#### `$ biocontainmentfacility display_detail`
 
 Displays detailed information on the chosen organism.
 
 Usage: `biocontainmentfacility display_detail number` (e.g. 5)
 
-## `$ biocontainmentfacility display_bacteria`
+#### `$ biocontainmentfacility display_bacteria`
 
 Displays summarized information on all bacteria in the catalogue
 
-## `$ biocontainmentfacility display_viruses`
+#### `$ biocontainmentfacility display_viruses`
 
 Displays summarized information on all viruses in the catalogue
 
-## `$ biocontainmentfacility display_lethal_organisms`
+#### `$ biocontainmentfacility display_lethal_organisms`
 
 Displays all organisms with greater than or equal to the chosen lethality.
 
 Usage: `biocontainmentfacility display_lethal_organisms number` (e.g. 9)
 
-## `$ biocontainmentfacility display_cost_of_treatment`
+#### `$ biocontainmentfacility display_cost_of_treatment`
 
 Displays the cost of treating all the organisms in the catalogue, for the given number of cases.
 
 Usage: `biocontainmentfacility display_cost_of_treatment number` (e.g. 500)
 
-## `$ biocontainmentfacility display_resistant_organisms`
+#### `$ biocontainmentfacility display_resistant_organisms`
 
 Displays summarized information on organisms which are resistant to the chosen treatment.
 
 Usage: `biocontainmentfacility display_resistant_organisms number` (e.g. 8)
 
-## `$ biocontainmentfacility display_susceptible_organisms`
+#### `$ biocontainmentfacility display_susceptible_organisms`
 
 Displays summarized information on organisms which are susceptible to the chosen treatment.
 
 Usage: `biocontainmentfacility display_susceptible_organisms number` (e.g. 7)
 
-## `$ biocontainmentfacility diagnose_symptoms`
+#### `$ biocontainmentfacility diagnose_symptoms`
 
 Displays summarized information on organisms which may cause the chosen symptoms. You may choose 1 or more symptoms from the list ro narrow your search.
 
