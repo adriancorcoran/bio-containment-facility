@@ -18,7 +18,8 @@ module Formatting
   end
 
   def plural(string, number, es = false)
-    "#{string}#{number == 1 ? '' : (es ? 'es' : 's')}"
+    symbol = es ? 'es' : 's'
+    "#{string}#{number == 1 ? '' : symbol}"
   end
 
   def currencyise(number, symbol = "$")

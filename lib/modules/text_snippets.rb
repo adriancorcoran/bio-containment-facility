@@ -6,7 +6,9 @@ module TextSnippets
   end
 
   def pathogenicity_increase
-    "\n  => After pathogenicity increase triggered (usually by environmental factor, random mutation or plasmid acquisition)...\n\n"
+    str = "\n  => After pathogenicity increase triggered (usually by environmental factor, random mutation or "
+    str += "plasmid acquisition)...\n\n"
+    str
   end
 
   def no_results_found

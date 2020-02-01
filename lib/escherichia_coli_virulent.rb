@@ -15,6 +15,8 @@ class EscherichiaColiVirulent < EscherichiaColi
     str = super
     str += line_short
     str += "    Virulence:\n"
-    str += "    Especially virulent strains of E.coli such as strain:#{@strain} produce Shiga Toxin, which increases the damage done by E.coli to the host.\n"
+    str += "    Especially virulent strains of E.coli such as strain:#{@strain} produce Shiga Toxin, which "
+    str += "increases the damage done by E.coli to the host.\n"
+    str
   end
 end

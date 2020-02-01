@@ -19,6 +19,8 @@ class Smallpox < Virus
     str = super
     str += line_short
     str += "    Virulence:\n"
-    str += "    Smallpox is a deadly virus which causes painful sores and is responsible for some of historys worst pandemics.\n"
+    str += "    Smallpox is a deadly virus which causes painful sores and is responsible for some of historys "
+    str += "worst pandemics.\n"
+    str
   end
 end

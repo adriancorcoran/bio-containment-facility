@@ -24,9 +24,9 @@ class HIVTest < Minitest::Test
 
   def test_increase_pathogenicity_adds_to_symptoms_array
     @organism = HIV.new(@strain)
-    refute_includes(@organism.symptoms, :compromised_immune_system, "symptoms should not include :compromised_immune_system")
+    refute_includes(@organism.symptoms, :compromised_immune_system, "symptoms should not include symptom")
     @organism.increase_pathogenicity
-    assert_includes(@organism.symptoms, :compromised_immune_system, "symptoms should include :compromised_immune_system")
+    assert_includes(@organism.symptoms, :compromised_immune_system, "symptoms should include symptom")
   end
 
   def test_increase_pathogenicity_increases_lethality

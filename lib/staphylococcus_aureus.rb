@@ -20,6 +20,8 @@ class StaphylococcusAureus < GramPositiveBacteria
     str = super
     str += line_short
     str += "    Virulence:\n"
-    str += "    S. aureus typically infects humans through a cut on their skin, leading to sores and absess formation.\n"
+    str += "    S. aureus typically infects humans through a cut on their skin, leading to sores and absess "
+    str += "formation.\n"
+    str
   end
 end

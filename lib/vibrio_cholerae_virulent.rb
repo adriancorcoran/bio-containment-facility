@@ -15,6 +15,8 @@ class VibrioCholeraeVirulent < VibrioCholerae
     str = super
     str += line_short
     str += "    Virulence:\n"
-    str += "    Vibrio cholerae strain:#{@strain} is one of the most prevalent and dangerous causes of cholera in the developing world.\n"
+    str += "    Vibrio cholerae strain:#{@strain} is one of the most prevalent and dangerous causes of cholera in "
+    str += " developing world.\n"
+    str
   end
 end

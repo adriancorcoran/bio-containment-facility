@@ -127,12 +127,14 @@ class OrganismTest < Minitest::Test
   def test_describe_symptoms_outputs_correctly
     @organism = Organism.new(@strain)
     @organism.symptoms << :vomiting << :sore_throat << :rash
-    assert_equal("Symptoms include: vomiting, sore throat, rash.", @organism.describe_symptoms, "symptoms output is not correct")
+    str = "Symptoms include: vomiting, sore throat, rash."
+    assert_equal(str, @organism.describe_symptoms, "symptoms output is not correct")
   end
 
   def test_describe_resistance_outputs_correctly
     @organism = Organism.new(@strain)
     @organism.resistant_to << :Penicillin << :Methicillin
-    assert_equal("This organism is resistant to: Penicillin, Methicillin.", @organism.describe_resistance, "resistance output is not correct")
+    str = "This organism is resistant to: Penicillin, Methicillin."
+    assert_equal(str, @organism.describe_resistance, "resistance output is not correct")
   end
 end

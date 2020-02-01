@@ -16,6 +16,8 @@ class ClostridiumBotulinum < GramPositiveBacteria
     str = super
     str += line_short
     str += "    Virulence:\n"
-    str += "    The powerful botulism toxin produced by Clostridium Botulinum can completely immobilise most large animals.\n"
+    str += "    The powerful botulism toxin produced by Clostridium Botulinum can completely immobilise most "
+    str += "large animals.\n"
+    str
   end
 end

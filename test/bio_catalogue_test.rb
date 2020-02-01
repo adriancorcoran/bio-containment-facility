@@ -19,27 +19,27 @@ class BioCatalogueTest < Minitest::Test
 
   # test available treatments is array
   def test_available_bacterial_treatments_is_array
-    assert_kind_of(Array, BioCatalogue::AVAILABLE_BACTERIAL_TREATMENTS, "AVAILABLE_BACTERIAL_TREATMENTS should be an array")
+    assert_kind_of(Array, BioCatalogue::AVAILABLE_BACTERIAL_TREATMENTS, "should be an array")
   end
 
   # test available treatments not empty
   def test_available_bacterial_treatments_not_empty
-    refute_empty(BioCatalogue::AVAILABLE_BACTERIAL_TREATMENTS, "AVAILABLE_BACTERIAL_TREATMENTS array should not be empty")
+    refute_empty(BioCatalogue::AVAILABLE_BACTERIAL_TREATMENTS, "array should not be empty")
   end
 
   # test available treatments is array
   def test_available_symptoms_is_array
-    assert_kind_of(Array, BioCatalogue::AVAILABLE_SYMPTOMS, "AVAILABLE_SYMPTOMS should be an array")
+    assert_kind_of(Array, BioCatalogue::AVAILABLE_SYMPTOMS, "should be an array")
   end
 
   # test available treatments not empty
   def test_available_symptoms_not_empty
-    refute_empty(BioCatalogue::AVAILABLE_SYMPTOMS, "AVAILABLE_SYMPTOMS array should not be empty")
+    refute_empty(BioCatalogue::AVAILABLE_SYMPTOMS, "array should not be empty")
   end
 
   # test organism list is array
   def test_organism_list_is_array
-    assert_kind_of(Array, @catalogue.organism_list, "organism_list should be an array")
+    assert_kind_of(Array, @catalogue.organism_list, "should be an array")
   end
 
   # test adding organism to organism list
@@ -67,14 +67,14 @@ class BioCatalogueTest < Minitest::Test
   end
 
   # test get bacteria
-  def test_get_bacteria
+  def test_filter_for_bacteria
     @catalogue = BioCatalogue.new
     hiv = HIV.new("ST45")
     e_coli = EscherichiaColi.new("ST45")
     s_aureus = StaphylococcusAureus.new("ST45")
     @catalogue.add_organisms(hiv, e_coli, s_aureus)
     assert_equal(3, @catalogue.organism_list.count, "There should be 3 items in the organism list")
-    bacteria_list = @catalogue.get_bacteria
+    bacteria_list = @catalogue.filter_for_bacteria
     assert_equal(2, bacteria_list.count, "There should be 2 items in the bacteria_list")
     refute_includes(bacteria_list, hiv, "organism should not be in bacteria_list")
     assert_includes(bacteria_list, e_coli, "organism should be in bacteria_list")
@@ -82,7 +82,7 @@ class BioCatalogueTest < Minitest::Test
   end
 
   # test get viruses
-  def test_get_viruses
+  def test_filter_for_viruses
     @catalogue = BioCatalogue.new
     ebola = Ebola.new("ST45")
     smallpox = Smallpox.new("ST45")
@@ -90,7 +90,7 @@ class BioCatalogueTest < Minitest::Test
     s_pneumoniae = StreptococcusPneumoniae.new("ST45")
     @catalogue.add_organisms(ebola, smallpox, e_coli, s_pneumoniae)
     assert_equal(4, @catalogue.organism_list.count, "There should be 4 items in the organism list")
-    virus_list = @catalogue.get_viruses
+    virus_list = @catalogue.filter_for_viruses
     assert_equal(2, virus_list.count, "There should be 2 items in the organism list")
     assert_includes(virus_list, ebola, "organism should be in virus_list")
     assert_includes(virus_list, smallpox, "organism should be in virus_list")
@@ -123,7 +123,7 @@ class BioCatalogueTest < Minitest::Test
     refute_includes(resistant_to_before, :Methicillin, "resistant_to should not include :Methicillin")
     @catalogue.trigger_pathogenicity_increase
     assert_operator(@catalogue.organism_list[0].lethality, :>, lethality_before, "Lethality should have increased")
-    assert_includes(@catalogue.organism_list[0].resistant_to, :Methicillin, "resistant_to should include :Methicillin")
+    assert_includes(@catalogue.organism_list[0].resistant_to, :Methicillin, "Should include :Methicillin")
   end
 
   # test getting lethal organisms
@@ -138,7 +138,11 @@ class BioCatalogueTest < Minitest::Test
   # test getting lethal organisms
   def test_getting_lethal_organisms
     @catalogue = BioCatalogue.new
-    @catalogue.add_organisms(Ebola.new("ST45"), HIV.new("ST45"), Smallpox.new("ST45"), EscherichiaColi.new("ST45"), EscherichiaColiVirulent.new("ST45"), StaphylococcusAureus.new("ST45"), StaphylococcusAureusMRSA.new("ST45"), StreptococcusPneumoniae.new("ST45"), VibrioCholeraeVirulent.new("ST45"), YersiniaPestisResistancePlasmid.new("ST45"), ClostridiumBotulinumVirulent.new("ST45"), ClostridiumBotulinum.new("ST45"))
+    @catalogue.add_organisms(Ebola.new("ST45"), HIV.new("ST45"), Smallpox.new("ST45"), EscherichiaColi.new("ST45"))
+    @catalogue.add_organisms(EscherichiaColiVirulent.new("ST45"), StaphylococcusAureus.new("ST45"))
+    @catalogue.add_organisms(StaphylococcusAureusMRSA.new("ST45"), StreptococcusPneumoniae.new("ST45"))
+    @catalogue.add_organisms(VibrioCholeraeVirulent.new("ST45"), YersiniaPestisResistancePlasmid.new("ST45"))
+    @catalogue.add_organisms(ClostridiumBotulinumVirulent.new("ST45"), ClostridiumBotulinum.new("ST45"))
     lethal_list_1 = @catalogue.get_lethal_organisms(5)
     lethal_list_2 = @catalogue.get_lethal_organisms(9)
     assert_equal(6, lethal_list_1.count, "lethal_list_1 should have 7 organisms")
@@ -148,7 +152,11 @@ class BioCatalogueTest < Minitest::Test
   # test getting lethal organisms after pathogenicity increase
   def test_getting_lethal_organisms_after_pathogenicity_increase
     @catalogue = BioCatalogue.new
-    @catalogue.add_organisms(Ebola.new("ST45"), HIV.new("ST45"), Smallpox.new("ST45"), EscherichiaColi.new("ST45"), EscherichiaColiVirulent.new("ST45"), StaphylococcusAureus.new("ST45"), StaphylococcusAureusMRSA.new("ST45"), StreptococcusPneumoniae.new("ST45"), VibrioCholeraeVirulent.new("ST45"), YersiniaPestisResistancePlasmid.new("ST45"), ClostridiumBotulinumVirulent.new("ST45"), ClostridiumBotulinum.new("ST45"))
+    @catalogue.add_organisms(Ebola.new("ST45"), HIV.new("ST45"), Smallpox.new("ST45"), EscherichiaColi.new("ST45"))
+    @catalogue.add_organisms(EscherichiaColiVirulent.new("ST45"), StaphylococcusAureus.new("ST45"))
+    @catalogue.add_organisms(StaphylococcusAureusMRSA.new("ST45"), StreptococcusPneumoniae.new("ST45"))
+    @catalogue.add_organisms(VibrioCholeraeVirulent.new("ST45"), YersiniaPestisResistancePlasmid.new("ST45"))
+    @catalogue.add_organisms(ClostridiumBotulinumVirulent.new("ST45"), ClostridiumBotulinum.new("ST45"))
     @catalogue.trigger_pathogenicity_increase
     lethal_list_1 = @catalogue.get_lethal_organisms(5)
     lethal_list_2 = @catalogue.get_lethal_organisms(9)
@@ -168,7 +176,8 @@ class BioCatalogueTest < Minitest::Test
   # test totalling the cost of treatment
   def test_totalling_the_cost_of_treatment
     @catalogue = BioCatalogue.new
-    @catalogue.add_organisms(HIV.new("ST45"), EscherichiaColi.new("ST45"), StaphylococcusAureus.new("ST45"), ClostridiumBotulinumVirulent.new("ST45"))
+    @catalogue.add_organisms(HIV.new("ST45"), EscherichiaColi.new("ST45"), StaphylococcusAureus.new("ST45"))
+    @catalogue.add_organisms(ClostridiumBotulinumVirulent.new("ST45"))
     assert_equal(100000, @catalogue.get_cost_of_treatment(1000), "get_cost_of_treatment should be 100000")
     @catalogue = BioCatalogue.new
     @catalogue.add_organisms(HIV.new("ST45"), EscherichiaColi.new("ST45"))
@@ -187,7 +196,9 @@ class BioCatalogueTest < Minitest::Test
   # test getting a list of organisms resistant to specific treatment
   def test_getting_list_of_organisms_resistant_to_specific_treatment
     @catalogue = BioCatalogue.new
-    @catalogue.add_organisms(EscherichiaColi.new("ST45"), StaphylococcusAureus.new("ST45"), StaphylococcusAureusMRSA.new("ST45"), VibrioCholerae.new("ST45"), YersiniaPestisResistancePlasmid.new("ST45"))
+    @catalogue.add_organisms(EscherichiaColi.new("ST45"), StaphylococcusAureus.new("ST45"))
+    @catalogue.add_organisms(StaphylococcusAureusMRSA.new("ST45"), VibrioCholerae.new("ST45"))
+    @catalogue.add_organisms(YersiniaPestisResistancePlasmid.new("ST45"))
     resistant_list_1 = @catalogue.get_organisms_resistant_to(:Vancomycin)
     resistant_list_2 = @catalogue.get_organisms_resistant_to(:Tetracycline)
     resistant_list_3 = @catalogue.get_organisms_resistant_to(:Gentamicin)
@@ -199,7 +210,9 @@ class BioCatalogueTest < Minitest::Test
   # test getting a list of organisms resistant to specific treatment after pathogenicity increase
   def test_getting_list_of_organisms_resistant_to_specific_treatment_after_pathogenicity_increase
     @catalogue = BioCatalogue.new
-    @catalogue.add_organisms(EscherichiaColi.new("ST45"), StaphylococcusAureus.new("ST45"), StaphylococcusAureusMRSA.new("ST45"), VibrioCholerae.new("ST45"), YersiniaPestisResistancePlasmid.new("ST45"))
+    @catalogue.add_organisms(EscherichiaColi.new("ST45"), StaphylococcusAureus.new("ST45"))
+    @catalogue.add_organisms(StaphylococcusAureusMRSA.new("ST45"), VibrioCholerae.new("ST45"))
+    @catalogue.add_organisms(YersiniaPestisResistancePlasmid.new("ST45"))
     @catalogue.trigger_pathogenicity_increase
     resistant_list_1 = @catalogue.get_organisms_resistant_to(:Vancomycin)
     resistant_list_2 = @catalogue.get_organisms_resistant_to(:Tetracycline)
@@ -221,7 +234,9 @@ class BioCatalogueTest < Minitest::Test
   # test getting a list of organisms susceptible to specific treatment
   def test_getting_list_of_organisms_susceptible_to_specific_treatment
     @catalogue = BioCatalogue.new
-    @catalogue.add_organisms(EscherichiaColi.new("ST45"), StaphylococcusAureus.new("ST45"), StaphylococcusAureusMRSA.new("ST45"), VibrioCholerae.new("ST45"), YersiniaPestisResistancePlasmid.new("ST45"))
+    @catalogue.add_organisms(EscherichiaColi.new("ST45"), StaphylococcusAureus.new("ST45"))
+    @catalogue.add_organisms(StaphylococcusAureusMRSA.new("ST45"), VibrioCholerae.new("ST45"))
+    @catalogue.add_organisms(YersiniaPestisResistancePlasmid.new("ST45"))
     susceptible_list_1 = @catalogue.get_organisms_susceptible_to(:Vancomycin)
     susceptible_list_2 = @catalogue.get_organisms_susceptible_to(:Tetracycline)
     susceptible_list_3 = @catalogue.get_organisms_susceptible_to(:Gentamicin)
@@ -233,7 +248,9 @@ class BioCatalogueTest < Minitest::Test
   # test getting a list of organisms susceptible to specific treatment after pathogenicity increase
   def test_getting_list_of_organisms_susceptible_to_specific_treatment_after_pathogenicity_increase
     @catalogue = BioCatalogue.new
-    @catalogue.add_organisms(EscherichiaColi.new("ST45"), StaphylococcusAureus.new("ST45"), StaphylococcusAureusMRSA.new("ST45"), VibrioCholerae.new("ST45"), YersiniaPestisResistancePlasmid.new("ST45"))
+    @catalogue.add_organisms(EscherichiaColi.new("ST45"), StaphylococcusAureus.new("ST45"))
+    @catalogue.add_organisms(StaphylococcusAureusMRSA.new("ST45"), VibrioCholerae.new("ST45"))
+    @catalogue.add_organisms(YersiniaPestisResistancePlasmid.new("ST45"))
     @catalogue.trigger_pathogenicity_increase
     susceptible_list_1 = @catalogue.get_organisms_susceptible_to(:Vancomycin)
     susceptible_list_2 = @catalogue.get_organisms_susceptible_to(:Tetracycline)
@@ -255,7 +272,9 @@ class BioCatalogueTest < Minitest::Test
   # test diagnosing using list of symptoms
   def test_diagnosing_using_list_of_symptoms
     @catalogue = BioCatalogue.new
-    @catalogue.add_organisms(EscherichiaColi.new("ST45"), EscherichiaColiVirulent.new("ST45"), StaphylococcusAureus.new("ST45"), StaphylococcusAureusMRSA.new("ST45"), VibrioCholerae.new("ST45"))
+    @catalogue.add_organisms(EscherichiaColi.new("ST45"), EscherichiaColiVirulent.new("ST45"))
+    @catalogue.add_organisms(StaphylococcusAureus.new("ST45"), StaphylococcusAureusMRSA.new("ST45"))
+    @catalogue.add_organisms(VibrioCholerae.new("ST45"))
     symptom_list_1 = @catalogue.diagnose_symptoms([:diarrhoea])
     symptom_list_2 = @catalogue.diagnose_symptoms([:shiga_toxin_production])
     symptom_list_3 = @catalogue.diagnose_symptoms([:diarrhoea, :vomiting, :fever])
@@ -269,7 +288,9 @@ class BioCatalogueTest < Minitest::Test
   # test diagnosing using list of symptoms after pathogenicity increase
   def test_diagnosing_using_list_of_symptoms_after_pathogenicity_increase
     @catalogue = BioCatalogue.new
-    @catalogue.add_organisms(EscherichiaColi.new("ST45"), EscherichiaColiVirulent.new("ST45"), StaphylococcusAureus.new("ST45"), StaphylococcusAureusMRSA.new("ST45"), VibrioCholerae.new("ST45"))
+    @catalogue.add_organisms(EscherichiaColi.new("ST45"), EscherichiaColiVirulent.new("ST45"))
+    @catalogue.add_organisms(StaphylococcusAureus.new("ST45"), StaphylococcusAureusMRSA.new("ST45"))
+    @catalogue.add_organisms(VibrioCholerae.new("ST45"))
     @catalogue.trigger_pathogenicity_increase
     symptom_list_1 = @catalogue.diagnose_symptoms([:diarrhoea])
     symptom_list_2 = @catalogue.diagnose_symptoms([:shiga_toxin_production])

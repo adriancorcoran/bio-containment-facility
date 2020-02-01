@@ -16,6 +16,8 @@ class StreptococcusPneumoniae < GramPositiveBacteria
     str = super
     str += line_short
     str += "    Virulence:\n"
-    str += "    Streptococci are known for infecting immunocompromised patients such as transplant patients and HIV sufferers.\n"
+    str += "    Streptococci are known for infecting immunocompromised patients such as transplant patients "
+    str += "and HIV sufferers.\n"
+    str
   end
 end

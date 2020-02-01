@@ -15,6 +15,8 @@ class Ebola < Virus
     str = super
     str += line_short
     str += "    Virulence:\n"
-    str += "    During replication the Ebola virus will often burst the host cell, leading to massive hemorrhage and death.\n"
+    str += "    During replication the Ebola virus will often burst the host cell, leading to massive hemorrhage "
+    str += "and death.\n"
+    str
   end
 end

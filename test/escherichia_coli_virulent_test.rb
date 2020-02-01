@@ -19,9 +19,9 @@ class EscherichiaColiVirulentTest < Minitest::Test
 
   def test_increase_pathogenicity_adds_to_symptoms_array
     @organism = EscherichiaColiVirulent.new(@strain)
-    refute_includes(@organism.symptoms, :shiga_toxin_production, "symptoms should not include :shiga_toxin_production")
+    refute_includes(@organism.symptoms, :shiga_toxin_production, "symptoms should not include symptom")
     @organism.increase_pathogenicity
-    assert_includes(@organism.symptoms, :shiga_toxin_production, "symptoms should include :shiga_toxin_production")
+    assert_includes(@organism.symptoms, :shiga_toxin_production, "symptoms should include symptom")
   end
 
   def test_increase_pathogenicity_increases_lethality

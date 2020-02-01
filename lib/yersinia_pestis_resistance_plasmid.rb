@@ -18,6 +18,9 @@ class YersiniaPestisResistancePlasmid < YersiniaPestis
     str = super
     str += line_short
     str += "    Virulence:\n"
-    str += "    This bacterium contains a plasmid. Plasmids are small pieces of DNA which can be integrated with a bacteria's existing genome to confer additional abilities to the bacteria. This commonly manifests as resistance to a treatment the bacteris was previously susceptible to.\n"
+    str += "    This bacterium contains a plasmid. Plasmids are small pieces of DNA which can be integrated with "
+    str += "a bacteria's existing genome to confer additional abilities to the bacteria. This commonly manifests as "
+    str += "resistance to a treatment the bacteris was previously susceptible to.\n"
+    str
   end
 end

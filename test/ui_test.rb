@@ -62,39 +62,39 @@ class UITest < Minitest::Test
     assert_equal("Argument must be an array", e.message)
   end
 
-  def test_get_organism_list_with_keys_outputs_string
+  def test_organism_list_with_keys_outputs_string
     ui = UI.new
-    str = ui.get_organism_list_with_keys
+    str = ui.organism_list_with_keys
     assert_instance_of(String, str, "Output should be a string")
   end
 
-  def test_get_treatment_list_with_keys_outputs_string
+  def test_treatment_list_with_keys_outputs_string
     ui = UI.new
-    str = ui.get_treatment_list_with_keys
+    str = ui.treatment_list_with_keys
     assert_instance_of(String, str, "Output should be a string")
   end
 
-  def test_get_symptom_list_with_keys_outputs_string
+  def test_symptom_list_with_keys_outputs_string
     ui = UI.new
-    str = ui.get_symptom_list_with_keys
+    str = ui.symptom_list_with_keys
     assert_instance_of(String, str, "Output should be a string")
   end
 
-  def test_get_num_organisms_outputs_integer
+  def test_num_organisms_outputs_integer
     ui = UI.new
-    num = ui.get_num_organisms
+    num = ui.num_organisms
     assert_instance_of(Integer, num, "Output should be an integer")
   end
 
-  def test_get_num_treatmentss_outputsinteger
+  def test_num_treatmentss_outputsinteger
     ui = UI.new
-    num = ui.get_num_treatments
+    num = ui.num_treatments
     assert_instance_of(Integer, num, "Output should be an integer")
   end
 
-  def test_get_num_symptomsoutputs_sinteger
+  def test_num_symptomsoutputs_sinteger
     ui = UI.new
-    num = ui.get_num_symptoms
+    num = ui.num_symptoms
     assert_instance_of(Integer, num, "Output should be an integer")
   end
 end

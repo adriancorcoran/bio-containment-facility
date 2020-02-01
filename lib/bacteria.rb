@@ -16,5 +16,6 @@ class Bacteria < Organism
     str = super
     str += "  - Gram?: #{@gram_negative ? 'Negative' : 'Positive'}\n"
     str += "  - Shape: #{@shape} shape\n"
+    str
   end
 end

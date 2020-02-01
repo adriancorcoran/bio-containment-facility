@@ -18,5 +18,6 @@ class GramPositiveBacteria < Bacteria
     str += "  - #{describe_symptoms}\n"
     str += line_short
     str += "  - #{describe_resistance}\n"
+    str
   end
 end

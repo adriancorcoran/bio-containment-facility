@@ -21,6 +21,8 @@ class YersiniaPestis < GramNegativeBacteria
     str = super
     str += line_short
     str += "    Virulence:\n"
-    str += "    The plague was one of the most famous and widespread pandemics in the middle ages killing an estimated 40% of the global population.\n"
+    str += "    The plague was one of the most famous and widespread pandemics in the middle ages killing an "
+    str += "estimated 40% of the global population.\n"
+    str
   end
 end

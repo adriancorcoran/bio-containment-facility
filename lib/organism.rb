@@ -64,5 +64,6 @@ class Organism
     str += "  - Is a cell?: #{@is_cell ? 'Yes' : 'No'}\n"
     str += "  - Cost of treating one patient: $#{@cost_of_treatment}\n"
     str += "  - Lethality index: #{@lethality}\n"
+    str
   end
 end

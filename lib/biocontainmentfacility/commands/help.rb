@@ -11,7 +11,8 @@ module Biocontainmentfacility
         Biocontainmentfacility::Commands::Registry.resolved_commands.each do |name, klass|
           next if name == 'help'
           puts CLI::UI.fmt("{{command:#{Biocontainmentfacility::TOOL_NAME} #{name}}}")
-          if help = klass.help
+          help = klass.help
+          if help
             puts CLI::UI.fmt(help)
           end
           puts ""

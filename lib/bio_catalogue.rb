@@ -32,9 +32,15 @@ class BioCatalogue
   # get data from yaml file
   DATA = YAML.load_file('./lib/data.yaml')
 
-  AVAILABLE_BACTERIAL_TREATMENTS = [:Amoxicillin, :Chloramphenicol, :Gentamicin, :Methycillin, :Penicillin, :Streptomycin, :Tetracycline, :Vancomycin]
+  AVAILABLE_BACTERIAL_TREATMENTS = [:Amoxicillin, :Chloramphenicol, :Gentamicin]
+  AVAILABLE_BACTERIAL_TREATMENTS << :Methycillin << :Penicillin << :Streptomycin
+  AVAILABLE_BACTERIAL_TREATMENTS << :Tetracycline << :Vancomycin
 
-  AVAILABLE_SYMPTOMS = [:abdominal_pain, :abscesses, :bloody_cough, :chills, :cholera, :diarrhoea, :fever, :flu_like_symptoms, :food_poisoning, :headache, :high_fever, :joint_muscle_aches, :meningitis, :paralysis, :pneumonia, :respiratory_infections, :shiga_toxin_production, :sore_throat, :sores, :swelling_of_lymph_nodes, :vomiting, :weakness]
+  AVAILABLE_SYMPTOMS = [:abdominal_pain, :abscesses, :bloody_cough, :chills]
+  AVAILABLE_SYMPTOMS << :cholera << :diarrhoea << :fever << :flu_like_symptoms << :food_poisoning
+  AVAILABLE_SYMPTOMS << :headache << :high_fever << :joint_muscle_aches << :meningitis
+  AVAILABLE_SYMPTOMS << :paralysis << :pneumonia << :respiratory_infections << :shiga_toxin_production
+  AVAILABLE_SYMPTOMS << :sore_throat << :sores << :swelling_of_lymph_nodes << :vomiting << :weakness
 
   def initialize
     @organism_list = []
@@ -46,11 +52,11 @@ class BioCatalogue
     args.each { |organism| @organism_list << organism }
   end
 
-  def get_bacteria
+  def filter_for_bacteria
     @organism_list.select { |organism| organism.is_a?(Bacteria) }
   end
 
-  def get_viruses
+  def filter_for_viruses
     @organism_list.select { |organism| organism.is_a?(Virus) }
   end
 

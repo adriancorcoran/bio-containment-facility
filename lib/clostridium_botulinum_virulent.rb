@@ -15,6 +15,8 @@ class ClostridiumBotulinumVirulent < ClostridiumBotulinum
     str = super
     str += line_short
     str += "    Virulence:\n"
-    str += "    The toxin of Clostridium botulinim causes botulism, a paralaysis of the nerve fibres leading to death through asphixiation.\n"
+    str += "    The toxin of Clostridium botulinim causes botulism, a paralaysis of the nerve fibres leading "
+    str += "to death through asphixiation.\n"
+    str
   end
 end

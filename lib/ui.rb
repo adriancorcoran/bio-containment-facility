@@ -69,7 +69,7 @@ class UI
     # headings
     puts heading("Displaying All Bacteria")
     # run query
-    puts catalogue.display_summary(catalogue.get_bacteria)
+    puts catalogue.display_summary(catalogue.filter_for_bacteria)
     # end
     puts "\n"
   end
@@ -80,7 +80,7 @@ class UI
     # headings
     puts heading("Displaying All Viruses")
     # run query
-    puts catalogue.display_summary(catalogue.get_viruses)
+    puts catalogue.display_summary(catalogue.filter_for_viruses)
     # end
     puts "\n"
   end
@@ -111,7 +111,9 @@ class UI
     # create catalogue
     catalogue = BioCatalogue.create_catalogue
     # headings
-    puts heading("Total Cost of Treatment for #{number_of_cases} #{plural('Case', number_of_cases)} of all organisms in the catalogue")
+    heading = "Total Cost of Treatment for #{number_of_cases} #{plural('Case', number_of_cases)} of all "
+    heading += "organisms in the catalogue"
+    puts heading(heading)
     # run query && display results
     puts currencyise(catalogue.get_cost_of_treatment(number_of_cases))
     # end
@@ -192,36 +194,40 @@ class UI
     puts "\n"
   end
 
-  def get_organism_list_with_keys
+  def organism_list_with_keys
     # create catalogue
     catalogue = BioCatalogue.create_catalogue
     # iterate and create string
     catalogue.organism_list.each_with_index.map { |organism, index| "  #{index + 1}. #{organism}" }.join("\n")
   end
 
-  def get_treatment_list_with_keys
+  def treatment_list_with_keys
     # iterate and create string
-    BioCatalogue::AVAILABLE_BACTERIAL_TREATMENTS.each_with_index.map { |treatment, index| "  #{index + 1}. #{symbol_list_to_string([treatment])}" }.join("\n")
+    BioCatalogue::AVAILABLE_BACTERIAL_TREATMENTS.each_with_index.map do |treatment, index|
+      "  #{index + 1}. #{symbol_list_to_string([treatment])}"
+    end.join("\n")
   end
 
-  def get_symptom_list_with_keys
+  def symptom_list_with_keys
     # iterate and create string
-    BioCatalogue::AVAILABLE_SYMPTOMS.each_with_index.map { |symptom, index| "  #{index + 1}. #{symbol_list_to_string([symptom])}" }.join("\n")
+    BioCatalogue::AVAILABLE_SYMPTOMS.each_with_index.map do |symptom, index|
+      "  #{index + 1}. #{symbol_list_to_string([symptom])}"
+    end.join("\n")
   end
 
-  def get_num_organisms
+  def num_organisms
     # create catalogue
     catalogue = BioCatalogue.create_catalogue
     # count
     catalogue.organism_list.count
   end
 
-  def get_num_treatments
+  def num_treatments
     # count
     BioCatalogue::AVAILABLE_BACTERIAL_TREATMENTS.count
   end
 
-  def get_num_symptoms
+  def num_symptoms
     # count
     BioCatalogue::AVAILABLE_SYMPTOMS.count
   end

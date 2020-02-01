@@ -20,6 +20,8 @@ class HIV < Virus
     str = super
     str += line_short
     str += "    Virulence:\n"
-    str += "    The HIV virus destroys the host immune system, often resulting in death from opportunistic infections by normally benign organisms.\n"
+    str += "    The HIV virus destroys the host immune system, often resulting in death from opportunistic "
+    str += "infections by normally benign organisms.\n"
+    str
   end
 end
